@@ -47,6 +47,14 @@ with a real keyboard or confirmed hearing it.
   tutorial on the test profile (the mod's "illegal move" line is unverified);
   settings can only be changed in the file, not in the game yet.
 
+## 0.1 package (2026-10-30)
+
+`tools/package.bat` builds `dist/Bejeweled3-Access-0.1.zip` (DLLs with no
+local paths inside, player readme, licences incl. Prism's). The packaged
+DLLs were installed and smoke-tested in the game (version check, NVDA via
+Prism, cursor, Q, H). Not published as a GitHub release yet (needs the
+user's go-ahead).
+
 ## Version 0.1 and game version check (2026-10-30, runtime-verified)
 
 - The mod checks the game file's SHA-256 at startup and runs only on the

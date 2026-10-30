@@ -61,3 +61,15 @@ Close the game first (a running game locks `winmm.dll`), then
   project root as the current folder.
 - `python -I tools/send_keys.py tab return` - post keys to the game window
   for testing
+
+## 5. Release package
+
+```bash
+cmd //c tools\package.bat
+```
+
+Builds a Release mod (no debug info) and a Release Prism with source paths
+trimmed (`/d1trimfile`), so neither DLL contains local folder names, then
+writes `dist/Bejeweled3-Access-<version>/` and the zip: both DLLs, the
+player readme (`packaging/README.txt`), the GPL-3.0 licence and Prism's
+licence, notice and bundled licences. `dist/` is not committed.
