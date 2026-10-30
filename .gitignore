@@ -1,0 +1,9 @@
+# Proprietary game material and analysis databases: never commit.
+private/
+*.exe
+*.pak
+
+# Third-party sources, toolchains and build output (reproducible, see docs/building.md).
+deps/
+build/
+dist/

@@ -1,0 +1,30 @@
+# Documentation index
+
+- [status.md](status.md) - current state, what is verified, next steps
+- [decisions.md](decisions.md) - user approvals and design decisions
+- [ui-map.md](ui-map.md) - screens, how to reach them, their controls
+- [research.md](research.md) - binary facts and community projects
+- [board-research-summary.md](board-research-summary.md) - board research results and design options
+- [board-design.md](board-design.md) - chosen board defaults (all configurable)
+- [board-inspiration.md](board-inspiration.md) - design ideas from other accessible match-3 work
+- [reverse-engineering.md](reverse-engineering.md) - core memory layouts with evidence
+- [re/text-drawing.md](re/text-drawing.md) - drawn-text capture hooks
+- [re/controls.md](re/controls.md) - checkbox, slider, list, records layouts
+- [re/menus.md](re/menus.md) - string table, image resource names, menu evidence
+- [re/hud.md](re/hud.md) - board HUD fields, announcements, board buttons
+- [re/badges.md](re/badges.md) - Badges tab grid, badge data, hover text
+- [re/zen-options.md](re/zen-options.md) - Zen options sections and selection rules
+- [re/game-actions.md](re/game-actions.md) - operating controls through the game's own code
+- [re/hover-text.md](re/hover-text.md) - descriptions read from game data
+- [re/screen-names-and-keys.md](re/screen-names-and-keys.md) - screen names, the game's own keys
+- [re/rare-dialogs.md](re/rare-dialogs.md) - rank-up, badge award, unlock, end screens
+- [re/board-research-brief.md](re/board-research-brief.md) - board research brief and topics
+- [re/board-state.md](re/board-state.md) - board grid, gem records, settled-board signal
+- [re/board-input.md](re/board-input.md) - keyboard cursor, swaps, legality, hints, move finder
+- [re/board-events.md](re/board-events.md) - matches, cascades, special gems, points, praise voices
+- [re/board-flow.md](re/board-flow.md) - game lifecycle per mode, timers, pause, speed, focus
+- [re/board-objects.md](re/board-objects.md) - everything that can be on the board, per mode
+- [re/board-descriptions.md](re/board-descriptions.md) - game's gem descriptions, colour names, offset cross-check, save format
+- [architecture.md](architecture.md) - how the mod is structured
+- [building.md](building.md) - toolchain, Prism build, mod build, install
+- [third-party.md](third-party.md) - third-party material and licences
