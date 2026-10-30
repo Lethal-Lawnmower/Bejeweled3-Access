@@ -181,3 +181,10 @@ changed by the user.
   Residual: commits from the private period may stay reachable on GitHub by
   their exact ids for a while; they contained only a Windows user-folder
   path and the save profile name (no game content).
+- **Agent incident (2026-10-30):** The release build folder `build-release/`
+  was not git-ignored and was pushed to the public repository in commit
+  808fdce. It contained CMake/ninja build files with local paths
+  (`C:\Users\Main\...`, `D:\dev\Bejeweled3-Access\...`) and our own built
+  winmm.dll; no game content, credentials or email. Removed in 3d403c2 and
+  now ignored. Rewriting the public history to erase it was blocked by the
+  safety system (force push); left for the user to decide.
