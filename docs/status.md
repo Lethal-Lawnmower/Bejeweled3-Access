@@ -52,8 +52,7 @@ with a real keyboard or confirmed hearing it.
 `tools/package.bat` builds `dist/Bejeweled3-Access-0.1.zip` (DLLs with no
 local paths inside, player readme, licences incl. Prism's). The packaged
 DLLs were installed and smoke-tested in the game (version check, NVDA via
-Prism, cursor, Q, H). Not published as a GitHub release yet (needs the
-user's go-ahead).
+Prism, cursor, Q, H). Published as GitHub release v0.1 (2026-10-30).
 
 ## Version 0.1 and game version check (2026-10-30, runtime-verified)
 

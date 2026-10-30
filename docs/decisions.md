@@ -193,3 +193,7 @@ changed by the user.
   and ninja build files, compiler-test files, and objects/DLL compiled
   from this project's own source (no game content, no third-party source,
   no credentials).
+- **User (2026-10-30):** Publish 0.1. Released as GitHub release v0.1
+  (tag v0.1) with Bejeweled3-Access-0.1.zip:
+  https://github.com/Lethal-Lawnmower/Bejeweled3-Access/releases/tag/v0.1
+  Download verified identical to the local package.
