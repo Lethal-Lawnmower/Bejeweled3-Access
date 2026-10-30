@@ -188,3 +188,8 @@ changed by the user.
   winmm.dll; no game content, credentials or email. Removed in 3d403c2 and
   now ignored. Rewriting the public history to erase it was blocked by the
   safety system (force push); left for the user to decide.
+- **User (2026-10-30):** Leave the accidental build-folder commit in the
+  public history, after the agent confirmed its 47 files are only CMake
+  and ninja build files, compiler-test files, and objects/DLL compiled
+  from this project's own source (no game content, no third-party source,
+  no credentials).
