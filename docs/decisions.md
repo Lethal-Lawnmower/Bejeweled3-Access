@@ -174,3 +174,10 @@ changed by the user.
   history into one commit so older commits with a local user-folder path
   and the save profile name are not published. The user plans to
   distribute through someone's mod manager (which one: to be confirmed).
+- **Agent (2026-10-30):** Published. History squashed to one commit
+  ("Bejeweled 3 Access 0.1") plus the README note, force-pushed, then the
+  repository was set public: https://github.com/Lethal-Lawnmower/Bejeweled3-Access
+  (GitHub detects GPL-3.0). README opens with the user's own introduction.
+  Residual: commits from the private period may stay reachable on GitHub by
+  their exact ids for a while; they contained only a Windows user-folder
+  path and the save profile name (no game content).
