@@ -197,3 +197,11 @@ changed by the user.
   (tag v0.1) with Bejeweled3-Access-0.1.zip:
   https://github.com/Lethal-Lawnmower/Bejeweled3-Access/releases/tag/v0.1
   Download verified identical to the local package.
+- **External tester (2026-10-30, relayed by the user):** First install on
+  another PC from the v0.1 release: "It's working great"; menus, scores and
+  match points worked. Confusion points: W/A/S/D vs arrows (thought WASD
+  gave illegal moves until realising they swap directly); expected Enter
+  to select a gem (only Space does); unsure how to open the settings file
+  via the Run box. Candidate fixes (pending the user): Enter = Space on the
+  board, clearer README on the two ways to swap, a simpler way to reach the
+  settings.
