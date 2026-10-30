@@ -9,6 +9,9 @@ mainstream hits in this genre before.
 **Do not purchase the game if you are hesitant or unsure about this mod. It
 only works with the Steam version on its latest version.**
 
+Timed modes are excluded for the time being till we get the gameplay ironed
+out to the way we like.
+
 ---
 
 A screen-reader accessibility mod for the Steam release of Bejeweled 3
