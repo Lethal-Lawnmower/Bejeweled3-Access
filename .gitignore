@@ -6,4 +6,5 @@ private/
 # Third-party sources, toolchains and build output (reproducible, see docs/building.md).
 deps/
 build/
+build-release/
 dist/

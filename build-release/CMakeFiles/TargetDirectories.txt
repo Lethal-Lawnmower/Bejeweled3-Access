@@ -1,3 +1,0 @@
-D:/dev/Bejeweled3-Access/build-release/CMakeFiles/winmm.dir
-D:/dev/Bejeweled3-Access/build-release/CMakeFiles/edit_cache.dir
-D:/dev/Bejeweled3-Access/build-release/CMakeFiles/rebuild_cache.dir
