@@ -29,7 +29,8 @@ constexpr int kMovesEnd = 0xC4C;
 constexpr int kMoveRecordSize = 0xD8;
 constexpr int kMoveCascadeStat = 0x40 + 4 * 0x1B;  // per-move cascade passes (static)
 constexpr int kScore = 0xD24;             // (live)
-constexpr int kMovesMade = 0xE34;         // += 1 per successful swap, 0x0074C070 (static)
+constexpr int kMovesMade = 0xE34;         // += 1 per successful swap, 0x0074C070 (live)
+constexpr int kMovesLeft = 0x324C;        // MoveLimitBoard "Moves Left" (docs/modes/quests.md)
 constexpr int kStats = 0xC84;             // board stats int[0x26] (static)
 constexpr int kStatGemsCleared = 4;
 constexpr int kStatSwapsTried = 15;
@@ -626,13 +627,17 @@ bool BoardKeyDown(uintptr_t board, WPARAM key) {
                 Speak(L"moves not available", true);
                 return true;
             }
-            // Move-limit quests: the limit is moves made plus the game's
-            // "Moves Left" counter, e.g. "23 of 32 moves made".
+            // Move-limit quests (Stratamax, Buried Treasures, ...) show
+            // "Moves Left"; the limit is moves made plus that counter, e.g.
+            // "23 of 32 moves made, 9 left". Other boards have no limit.
             std::wstring out = std::to_wstring(moves);
-            HudState hud;
-            if (ReadHud(&hud) && hud.movesLeft.known && hud.movesLeft.value >= 0)
-                out += L" of " + std::to_wstring(moves + hud.movesLeft.value);
-            Speak(out + (moves == 1 && out == L"1" ? L" move made" : L" moves made"), true);
+            int32_t left = -1;
+            bool limited = IsKindOf(board, "MoveLimitBoard") &&
+                           ReadI32(board + kMovesLeft, &left) && left >= 0;
+            if (limited) out += L" of " + std::to_wstring(moves + left);
+            out += moves == 1 && !limited ? L" move made" : L" moves made";
+            if (limited) out += L", " + std::to_wstring(left) + L" left";
+            Speak(out, true);
             return true;
         }
         case 'R':

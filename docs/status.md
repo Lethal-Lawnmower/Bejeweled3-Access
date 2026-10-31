@@ -212,15 +212,21 @@ for a move counter after a long Classic session, in the form "23 out of 32
 moves made". N speaks the game's own count of successful moves, Board
 `+0xE34` (incremented by `0x0074C070` for each successful swap,
 docs/re/board-events.md): "0 moves made", "1 move made", "2 moves made". On
-MoveLimitBoard quests it adds the limit as moves made plus the game's Moves
-Left counter (`+0x324C`, read by hud.cpp): "23 of 32 moves made".
+MoveLimitBoard quests (IsKindOf; Stratamax, Buried Treasures) it adds the
+limit, moves made plus the game's Moves Left counter (`+0x324C`), and the
+moves remaining: "23 of 32 moves made, 9 left" (user 2026-10-31: "display
+how many moves remaining"). Other boards show no move limit, so nothing
+remaining is said there.
 Live check 2026-10-31 (posted keys, Lethal profile, save backed up to
 private/save-backup-20261031-moves and restored identical, test classic.sav
 removed): new Classic game N "0 moves made"; after one match "1 move made";
 two illegal swaps ("no match, swapped back") left it at 1; after a second
-match "2 moves made". Not run: a move-limit quest (the "of 32" form, and
-whether `+0xE34` and Moves Left agree there), and whether Classic keeps or
-resets the count across levels.
+match "2 moves made". Stratamax (MoveLimitBoard, quest limit 20 in
+quest.cfg), same save routine (private/save-backup-20261031-movesleft,
+restored identical): "0 of 20 moves made, 20 left"; an illegal swap left it
+unchanged; then "1 of 20 moves made, 19 left" and "2 of 20 moves made, 18
+left", so `+0xE34` and Moves Left agree there. Not run: Buried Treasures,
+and whether Classic keeps or resets the count across levels.
 
 0.2 published 2026-10-30 as GitHub release v0.2 (user-approved):
 https://github.com/Lethal-Lawnmower/Bejeweled3-Access/releases/tag/v0.2

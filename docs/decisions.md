@@ -233,3 +233,6 @@ changed by the user.
 - **User (2026-10-31):** "Okay, you can test and see. Basically, you know, 23
   out of 32 moves made." Authorized the live test and set the wording: on
   quests with a move limit N also gives the limit.
+- **User (2026-10-31):** "we need it to also, if it's possible, display how
+  many moves remaining... however you want to display it." N adds "9 left"
+  on move-limit quests; other modes have no limit on screen.
