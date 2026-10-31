@@ -208,7 +208,8 @@ game-wide rather than per profile.
    (Board vtable+0x2EC, as the game's DrawTimer), runtime-verified as
    "0:56" in Lightning (session 3). On untimed boards T would say so.
    Timed modes themselves stay unsupported until their gameplay is
-   worked out; note Space pauses timed boards (hud.md), which conflicts
+   worked out; static research (hud.md) says Space pauses timed boards,
+   not checked at runtime, which would conflict
    with Space-to-select there.
 2. Agent proposals, not yet approved: Enter acts like Space on the board;
    F1 reads the key list; X (next special gem) and R/C on by default; an
