@@ -29,6 +29,7 @@ constexpr int kMovesEnd = 0xC4C;
 constexpr int kMoveRecordSize = 0xD8;
 constexpr int kMoveCascadeStat = 0x40 + 4 * 0x1B;  // per-move cascade passes (static)
 constexpr int kScore = 0xD24;             // (live)
+constexpr int kMovesMade = 0xE34;         // += 1 per successful swap, 0x0074C070 (static)
 constexpr int kStats = 0xC84;             // board stats int[0x26] (static)
 constexpr int kStatGemsCleared = 4;
 constexpr int kStatSwapsTried = 15;
@@ -526,7 +527,7 @@ std::wstring BoardKeyHelp() {
     if (set.enterSelects) out += L" or Enter";
     out += L" selects a gem, then an arrow swaps it. W, A, S, D swap the gem under the cursor "
            L"up, left, down or right. E where am I. Q the four gems around. H hint. "
-           L"T time left. F6 score and progress. M mode details, such as the poker hand.";
+           L"T time left. N moves made. F6 score and progress. M mode details, such as the poker hand.";
     if (set.nextSpecialKey) out += L" X next special gem.";
     if (set.readRowColumnKeys) out += L" R row, C column.";
     out += L" Tab, then Enter, the board's buttons. Escape game menu.";
@@ -617,6 +618,14 @@ bool BoardKeyDown(uintptr_t board, WPARAM key) {
                 Speak(L"time not available", true);
             else
                 Speak(HudTimeText(hud.ticksLeft.value) + L" left", true);
+            return true;
+        }
+        case 'N': {  // the game's own count of successful moves this game
+            int32_t moves = 0;
+            if (!ReadI32(board + kMovesMade, &moves) || moves < 0)
+                Speak(L"moves not available", true);
+            else
+                Speak(std::to_wstring(moves) + (moves == 1 ? L" move" : L" moves"), true);
             return true;
         }
         case 'R':

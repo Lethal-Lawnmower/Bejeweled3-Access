@@ -223,3 +223,10 @@ changed by the user.
   v0.2 ("Yeah, you want to do it?" in answer to push and release).
 - **User (2026-10-30):** Project paused after 0.2 until player feedback
   arrives; the user moves on to another project.
+
+## 2026-10-31, move counter
+
+- User request (2026-10-31): "We need to have a move counter." Narrow
+  resumption of the paused project for this item only. Added as the N key,
+  reading the game's own moves-made field rather than counting in the mod.
+  Not pushed or released; publication still needs the user's approval.

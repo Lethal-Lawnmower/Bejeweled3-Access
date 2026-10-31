@@ -66,6 +66,7 @@ On the game board (stage 1, 2026-10-30):
 | H | Press the game's hint button; the mod says which gem the hint points to (also for automatic hints) |
 | X | Next special gem; again for the one after (on by default from 0.2) |
 | T | Time left in timed modes, as the game's timer shows it (0.2) |
+| N | Moves made this game, the game's own count (after 0.2, not live-tested) |
 | M | Mode details: poker hand, butterflies, ice columns, ... (0.2, not live-tested) |
 | F6 | Score, level, progress, moves, plus the mode's status |
 | F1 | List the keys (0.2) |

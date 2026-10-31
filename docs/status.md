@@ -202,9 +202,19 @@ game-wide rather than per profile.
 
 **Paused by the user 2026-10-30** after the 0.2 release, waiting for player
 feedback. Resume when the user brings feedback; do not start new work
-before then. Path to 1.0 (agent view, not a user decision): player reports
+before then. Resumed by the user 2026-10-31 for one item: a move counter
+(see below). Path to 1.0 (agent view, not a user decision): player reports
 on the other modes (Ice Storm never run), the Lightning end-of-game screen
 and the late quest-help OK button, more PCs and screen readers.
+
+**N key: move counter (2026-10-31, after 0.2, not released).** The user asked
+for a move counter after a long Classic session. N speaks the game's own
+count of successful moves, Board `+0xE34` (incremented by `0x0074C070` for
+each successful swap, docs/re/board-events.md). Evidence: static only plus a
+clean build; no board was open when checked, so the value has not been read
+live and it is unknown whether Classic keeps or resets it across levels.
+Next: on a test board, make two or three moves, press N, compare with the
+moves made; then go up a level in Classic and press N again.
 
 0.2 published 2026-10-30 as GitHub release v0.2 (user-approved):
 https://github.com/Lethal-Lawnmower/Bejeweled3-Access/releases/tag/v0.2
