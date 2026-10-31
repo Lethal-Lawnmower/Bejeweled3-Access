@@ -10,6 +10,7 @@
 #include "game_strings.h"
 #include "hud.h"
 #include "log.h"
+#include "mode_info.h"
 #include "settings.h"
 #include "speech.h"
 #include "text.h"
@@ -81,6 +82,7 @@ int g_moveMaxCascade = 0;
 std::map<int, std::wstring> g_startNames;  // special gem id -> game name at move start
 bool g_hintArmed = true;   // one announcement per hint animation start
 int g_hintWindow = 0;      // ticks left to find the hinted gem after a hint
+const ModeHooks* g_hooks = nullptr;  // this board's mode extras (mode_info.h)
 int g_lastSpecial = -1;    // cell X last named; repeated X continues after it
 int g_lastSpecialFrom = -1;  // cursor cell at that time
 int g_hintRequested = 0;   // ticks left in which a hint counts as asked for (H)
@@ -292,6 +294,16 @@ std::wstring NeighboursText(uintptr_t board, const Snapshot& s, int col, int row
     return out;
 }
 
+// The mode's words for a cell (butterfly, ice, dirt, ...), with a leading
+// comma, or nothing.
+std::wstring CellExtra(uintptr_t board, int col, int row) {
+    if (!g_hooks || !g_hooks->cellText) return L"";
+    uint32_t piece = 0;
+    if (!ReadU32(board + kGrid + 4 * (col + 8 * row), &piece)) return L"";
+    std::wstring extra = g_hooks->cellText(board, piece, col, row);
+    return extra.empty() ? L"" : L", " + extra;
+}
+
 void SpeakCursor(uintptr_t board, const Snapshot& s) {
     const Settings& set = CurrentSettings();
     std::wstring text;
@@ -301,6 +313,7 @@ void SpeakCursor(uintptr_t board, const Snapshot& s) {
         text = Gem(board, s, s.cursorCol, s.cursorRow) + L", " + Position(s.cursorCol, s.cursorRow);
     else
         text = Gem(board, s, s.cursorCol, s.cursorRow);
+    if (set.cursor != CursorSpeech::PositionOnly) text += CellExtra(board, s.cursorCol, s.cursorRow);
     Speak(text, true);
 }
 
@@ -372,12 +385,22 @@ void BoardReset() {
     g_inMove = false;
     g_specialNames.clear();
     g_lastSpecial = g_lastSpecialFrom = -1;
+    if (g_hooks && g_hooks->reset) g_hooks->reset();
+    g_hooks = nullptr;
 }
 
 void BoardTick(uintptr_t board) {
     if (board != g_board) {
         BoardReset();
         g_board = board;
+        g_hooks = &ModeHooksFor(board);
+        if (g_hooks->reset) g_hooks->reset();
+    }
+    // Mode events (card added, butterfly at the top, ...) queue after other speech.
+    if (g_hooks->tick) {
+        std::vector<std::wstring> events;
+        g_hooks->tick(board, &events);
+        for (const std::wstring& e : events) Speak(e, false);
     }
     Snapshot now;
     if (!TakeSnapshot(board, &now)) return;
@@ -479,13 +502,18 @@ void BoardTick(uintptr_t board) {
     g_prev = now;
 }
 
+std::wstring BoardModeStatus(uintptr_t board) {
+    const ModeHooks& hooks = ModeHooksFor(board);
+    return hooks.briefStatus ? hooks.briefStatus(board) : L"";
+}
+
 std::wstring BoardKeyHelp() {
     const Settings& set = CurrentSettings();
     std::wstring out = L"Board keys. Arrows move the cursor. Space";
     if (set.enterSelects) out += L" or Enter";
     out += L" selects a gem, then an arrow swaps it. W, A, S, D swap the gem under the cursor "
            L"up, left, down or right. E where am I. Q the four gems around. H hint. "
-           L"T time left. F6 score and progress.";
+           L"T time left. F6 score and progress. M mode details, such as the poker hand.";
     if (set.nextSpecialKey) out += L" X next special gem.";
     if (set.readRowColumnKeys) out += L" R row, C column.";
     out += L" Tab, then Enter, the board's buttons. Escape game menu.";
@@ -551,9 +579,15 @@ bool BoardKeyDown(uintptr_t board, WPARAM key) {
             if (!cursor) {
                 Speak(L"no cursor yet, press an arrow key", true);
             } else {
-                Speak(Gem(board, s, col, row) + L", " + Position(col, row), true);
+                Speak(Gem(board, s, col, row) + CellExtra(board, col, row) + L", " +
+                          Position(col, row), true);
             }
             return true;
+        case 'M': {  // the mode's own objects: poker hand, butterflies, ice, ...
+            std::wstring text = g_hooks && g_hooks->details ? g_hooks->details(board) : L"";
+            Speak(text.empty() ? L"no mode details" : text, true);
+            return true;
+        }
         case 'Q':  // neighbours
             if (!cursor) {
                 Speak(L"no cursor yet, press an arrow key", true);

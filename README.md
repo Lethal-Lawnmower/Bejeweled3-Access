@@ -46,6 +46,7 @@ Menus and dialogs:
 | Enter or Space | Press the focused button, toggle a checkbox, select a tab |
 | Left / Right | Change the focused slider by 10 % |
 | F5 | Repeat the current screen or dialog and the focused item |
+| F1 | List the keys for menus or the board (0.2) |
 | F6 | Game status during play (score, level, progress, time, moves) |
 | F12 | Developer: write the widget tree and drawn text to the log |
 
@@ -56,11 +57,14 @@ On the game board (stage 1, 2026-10-30):
 | Arrows | The game's own cursor; the mod says the gem under it (colour and special type, in the game's words) |
 | E | Where am I: gem and position |
 | Q | Neighbours: the gems above, below, left and right |
+| Space or Enter | Select the gem under the cursor (the game's Space; Enter added by the mod, setting `enterselects`) |
 | H | Press the game's hint button; the mod says which gem the hint points to (also for automatic hints) |
-| F6 | Score, level, progress, moves |
-| T | Time left in timed modes, as the game's timer shows it (in development for 0.2, not in the 0.1 release) |
+| X | Next special gem; again for the one after (on by default from 0.2) |
+| T | Time left in timed modes, as the game's timer shows it (0.2) |
+| M | Mode details: poker hand, butterflies, ice columns, ... (0.2, not live-tested) |
+| F6 | Score, level, progress, moves, plus the mode's status |
+| F1 | List the keys (0.2) |
 | R / C | Read the row / column (off by default, see settings) |
-| X | Next special gem (off by default) |
 
 After each move the mod plays the game's own soft button sound when the
 board has settled and says a short summary (points, gems cleared, cascades,

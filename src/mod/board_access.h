@@ -17,6 +17,9 @@ void BoardTick(uintptr_t board);
 // mod used the key (it is then not passed on).
 bool BoardKeyDown(uintptr_t board, WPARAM key);
 
+// The mode's short status for F6 (poker hand, depth, ...), or empty.
+std::wstring BoardModeStatus(uintptr_t board);
+
 // The board's keys for F1, listing only the optional keys that are on.
 std::wstring BoardKeyHelp();
 

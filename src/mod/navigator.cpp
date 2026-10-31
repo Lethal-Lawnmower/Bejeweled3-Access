@@ -1336,6 +1336,8 @@ void SpeakHud() {
         out += L", time " + HudTimeText(s.ticksLeft.value);
     }
     add(L"moves left", s.movesLeft);
+    std::wstring mode = BoardModeStatus(s.board);
+    if (!mode.empty()) out += (out.empty() ? L"" : L", ") + mode;
     if (s.questDescriptionKnown && !s.questDescription.empty())
         out += L". " + CleanGameText(s.questDescription);
     Speak(out.empty() ? L"Game status unknown" : out, true);

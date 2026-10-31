@@ -199,3 +199,18 @@ changed by the user.
   Download verified identical to the local package.
 - **User (2026-10-30):** Feedback from outside testers is kept in local
   notes (`private/notes/`), not in the repository.
+- **User (2026-10-30):** Version 0.2 adds a T key that speaks the countdown
+  in timed modes such as Lightning.
+- **User (2026-10-30):** 0.2 also gets the agent-proposed polish: Enter
+  selects like Space, F1 reads the key list, X (next special gem) on by
+  default. Other modes are not urgent ("I kind of don't have an interest in
+  those mini games"); then: "add support for the mini games as much as you
+  can, but say that they haven't been through live testing."
+- **User (2026-10-30):** "Let's make 0.2 a substantial one. Let's not make a
+  push just yet. Use subagents to delegate the rest of what we can within
+  reason. Mini games, stuff like that." Authorizes subagents for the other
+  modes. Not authorized yet: pushing to GitHub, publishing release 0.2.
+- **Agent (2026-10-30):** Subagents do static work and code in their own
+  files (`src/mod/mode_*.cpp/.h`, `docs/modes/*.md`); only the lead agent
+  builds the DLL, wires shared files and runs the game. Mode support that
+  could not be played (locked modes) is marked "not live-tested".

@@ -49,6 +49,7 @@ Left / Right                    change a slider
 Home / End                      first / last item
 F5                              repeat where you are
 F6                              game status during play
+F1                              list the keys
 
 In text fields (your name), type normally; the mod reads what you type.
 
@@ -58,7 +59,7 @@ Keys on the game board
 
 The game's own controls:
 Arrows                          move the cursor (first press shows it)
-Space                           select the gem under the cursor; an arrow
+Space or Enter                  select the gem under the cursor; an arrow
                                 then swaps it in that direction
 W, A, S, D                      swap the gem under the cursor up, left,
                                 down or right
@@ -69,10 +70,15 @@ Added by the mod:
 E                               where am I: gem and position
 Q                               the four gems around the cursor
 H                               the game's hint: which gem it points to
+X                               next special gem; press again for the
+                                one after
+T                               time left (timed modes)
+M                               mode details (poker hand, butterflies,
+                                ice columns, ...)
 F6                              score, level, progress
+F1                              list the board keys
 Tab, then Enter                 the board's own buttons (hint, menu)
 R / C                           read the row / column (off by default)
-X                               next special gem (off by default)
 
 After each move you hear what moved where, and when the board has settled
 a short summary: points, gems cleared, cascades, special gems made or set
