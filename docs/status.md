@@ -200,6 +200,10 @@ game-wide rather than per profile.
 
 ## Next steps
 
+0.2 published 2026-10-30 as GitHub release v0.2 (user-approved):
+https://github.com/Lethal-Lawnmower/Bejeweled3-Access/releases/tag/v0.2
+Zip SHA-256 a0dc688e3c53276017799edefa69f694011bf57175ef8e0038e40d8626c6b8d0.
+
 0.1 is released (GitHub release v0.1) and in use. Candidates for 0.2:
 
 1. **T key** (user request, 2026-10-30): T speaks the countdown in timed
