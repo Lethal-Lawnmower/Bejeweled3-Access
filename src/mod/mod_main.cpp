@@ -43,6 +43,10 @@ LRESULT CALLBACK ModWndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
             break;
         case WM_KEYDOWN:
             if (NavigatorKeyDown(hwnd, wp)) return 0;
+            wp = NavigatorGameKey(msg, wp);
+            break;
+        case WM_KEYUP:
+            wp = NavigatorGameKey(msg, wp);
             break;
         case WM_CHAR:
             if (NavigatorChar(wp)) return 0;

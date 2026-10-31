@@ -19,6 +19,7 @@
 #include "log.h"
 #include "mouse_override.h"
 #include "screen_names.h"
+#include "settings.h"
 #include "sexy.h"
 #include "speech.h"
 #include "text.h"
@@ -68,6 +69,7 @@ std::vector<uint64_t> g_pendingSignature;
 int g_stableTicks = 0;
 bool g_onBoard = false;            // a game board is showing with no dialog over it
 bool g_boardButtonArmed = false;   // Tab just focused a board button
+bool g_enterAsSpace = false;       // this Enter press goes to the game as Space
 
 std::deque<MouseAction> g_actions;
 int g_hoverWaitTicks = 0;
@@ -1409,11 +1411,23 @@ bool NavigatorKeyDown(HWND hwnd, WPARAM key) {
         case VK_F6:
             SpeakHud();
             return true;
+        case VK_F1:
+            if (g_onBoard)
+                Speak(BoardKeyHelp(), true);
+            else
+                Speak(L"Menu keys. Up and Down, or Tab, move. Enter or Space presses. Left and "
+                      L"Right change a slider. Home and End, first and last. F5 where am I. "
+                      L"F6 game status. F1 this help.", true);
+            return true;
     }
     // The mod's board reading keys (E, Q, ...); the game's own keys pass on.
     if (g_onBoard && BoardKeyDown(g_context, key)) {
         g_swallowChar = (key >= 'A' && key <= 'Z') ? (WPARAM)(key - 'A' + 'a') : 0;
         return true;
+    }
+    if (g_onBoard && key == VK_RETURN && !g_boardButtonArmed && CurrentSettings().enterSelects) {
+        g_enterAsSpace = true;  // NavigatorGameKey hands it on as Space
+        return false;
     }
     if (g_items.empty()) return false;  // leave keys to the game outside menus
     const Item* item = FocusedItem();
@@ -1458,6 +1472,12 @@ bool NavigatorKeyDown(HWND hwnd, WPARAM key) {
             return Consume(key);
     }
     return false;
+}
+
+WPARAM NavigatorGameKey(UINT msg, WPARAM key) {
+    if (key != VK_RETURN || !g_enterAsSpace) return key;
+    if (msg == WM_KEYUP) g_enterAsSpace = false;  // release the Space it pressed
+    return VK_SPACE;
 }
 
 bool NavigatorChar(WPARAM ch) {

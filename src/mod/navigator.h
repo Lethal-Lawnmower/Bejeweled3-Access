@@ -11,6 +11,11 @@ void NavigatorTick(HWND hwnd);
 // Returns true if the key was consumed by the mod.
 bool NavigatorKeyDown(HWND hwnd, WPARAM key);
 
+// The key the game should receive for a WM_KEYDOWN / WM_KEYUP the mod did
+// not consume. On the board Enter reaches the game as Space (setting
+// enterselects), so Enter selects the gem under the cursor.
+WPARAM NavigatorGameKey(UINT msg, WPARAM key);
+
 // Returns true if this WM_CHAR belongs to a key the mod consumed.
 bool NavigatorChar(WPARAM ch);
 

@@ -81,6 +81,8 @@ int g_moveMaxCascade = 0;
 std::map<int, std::wstring> g_startNames;  // special gem id -> game name at move start
 bool g_hintArmed = true;   // one announcement per hint animation start
 int g_hintWindow = 0;      // ticks left to find the hinted gem after a hint
+int g_lastSpecial = -1;    // cell X last named; repeated X continues after it
+int g_lastSpecialFrom = -1;  // cursor cell at that time
 int g_hintRequested = 0;   // ticks left in which a hint counts as asked for (H)
 
 // A swap the player just asked for (W/A/S/D, or an arrow with a gem
@@ -369,6 +371,7 @@ void BoardReset() {
     g_prev = Snapshot();
     g_inMove = false;
     g_specialNames.clear();
+    g_lastSpecial = g_lastSpecialFrom = -1;
 }
 
 void BoardTick(uintptr_t board) {
@@ -476,6 +479,19 @@ void BoardTick(uintptr_t board) {
     g_prev = now;
 }
 
+std::wstring BoardKeyHelp() {
+    const Settings& set = CurrentSettings();
+    std::wstring out = L"Board keys. Arrows move the cursor. Space";
+    if (set.enterSelects) out += L" or Enter";
+    out += L" selects a gem, then an arrow swaps it. W, A, S, D swap the gem under the cursor "
+           L"up, left, down or right. E where am I. Q the four gems around. H hint. "
+           L"T time left. F6 score and progress.";
+    if (set.nextSpecialKey) out += L" X next special gem.";
+    if (set.readRowColumnKeys) out += L" R row, C column.";
+    out += L" Tab, then Enter, the board's buttons. Escape game menu.";
+    return out;
+}
+
 bool BoardKeyDown(uintptr_t board, WPARAM key) {
     Snapshot s;
     if (!TakeSnapshot(board, &s)) return false;
@@ -573,10 +589,16 @@ bool BoardKeyDown(uintptr_t board, WPARAM key) {
         }
         case 'X': {
             if (!set.nextSpecialKey) return false;
-            int start = cursor ? col + 8 * row + 1 : 0;
+            // From the cursor in reading order; pressing X again without
+            // moving the cursor goes on to the next one.
+            int from = cursor ? col + 8 * row : -1;
+            int start = from >= 0 ? from + 1 : 0;
+            if (g_lastSpecial >= 0 && g_lastSpecialFrom == from) start = g_lastSpecial + 1;
             for (int k = 0; k < 64; ++k) {
                 int i = (start + k) % 64;
                 if (s.cells[i].present && s.cells[i].flags) {
+                    g_lastSpecial = i;
+                    g_lastSpecialFrom = from;
                     Speak(Gem(board, s, i % 8, i / 8) + L", " + Position(i % 8, i / 8), true);
                     return true;
                 }

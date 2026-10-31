@@ -16,7 +16,8 @@ struct Settings {
     bool stillMovingWarning = true;
     bool announceSelection = true;
     bool readRowColumnKeys = false;  // R / C on the board
-    bool nextSpecialKey = false;     // X on the board
+    bool nextSpecialKey = true;      // X on the board (off by default in 0.1)
+    bool enterSelects = true;        // Enter on the board acts like Space
     bool soundCues = true;
     bool hintNeighbours = false;     // add the four neighbours to a hint
     bool autoHints = false;          // speak the game's automatic hints (user: H only)

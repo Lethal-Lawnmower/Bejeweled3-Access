@@ -3,6 +3,7 @@
 #include <windows.h>
 
 #include <cstdint>
+#include <string>
 
 // Game board accessibility (stage 1): speaks the gem under the game's own
 // keyboard cursor, reading keys, and a summary after each move. The game's
@@ -15,6 +16,9 @@ void BoardTick(uintptr_t board);
 // Called for keys on a board before they reach the game. Returns true if the
 // mod used the key (it is then not passed on).
 bool BoardKeyDown(uintptr_t board, WPARAM key);
+
+// The board's keys for F1, listing only the optional keys that are on.
+std::wstring BoardKeyHelp();
 
 // Resets tracking when the board is left (a new game starts clean).
 void BoardReset();

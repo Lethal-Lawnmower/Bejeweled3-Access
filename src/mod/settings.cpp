@@ -32,14 +32,19 @@ const char kDefaultFile[] =
     "; Extra reading keys: R reads the row, C reads the column: on, off\r\n"
     "rowcolumnkeys=off\r\n"
     "; X says where the next special gem is: on, off\r\n"
-    "nextspecialkey=off\r\n"
+    "nextspecialkey=on\r\n"
+    "; Enter selects the gem under the cursor, like Space: on, off.\r\n"
+    "; (Tab, then Enter still presses the board's buttons.)\r\n"
+    "enterselects=on\r\n"
     "; Short game sounds as cues (board settled, illegal move): on, off\r\n"
     "soundcues=on\r\n"
     "; Also speak the game's automatic hints (every 15 s when idle): on, off.\r\n"
     "; Hints you ask for with H are always spoken.\r\n"
     "autohints=off\r\n"
     "; Add the four surrounding gems to a hint (Q reads them anyway): on, off\r\n"
-    "hintneighbours=off\r\n";
+    "hintneighbours=off\r\n"
+    "; Format of this file, used to update it for new versions; do not change.\r\n"
+    "settingsversion=2\r\n";
 
 std::wstring Get(const wchar_t* key, const wchar_t* fallback) {
     wchar_t buf[64];
@@ -71,6 +76,12 @@ void SettingsLoad() {
             Log("settings: created %s with defaults", "settings.ini");
         }
     }
+    // Files from 0.1 (no settingsversion) get the 0.2 default for X, which
+    // was off in 0.1; the version line appended below marks them as updated.
+    if (Get(L"settingsversion", L"1") == L"1" && Get(L"nextspecialkey", L"?") == L"off") {
+        WritePrivateProfileStringW(L"board", L"nextspecialkey", L"on", g_path.c_str());
+        Log("settings: updated nextspecialkey to on (0.2 default)");
+    }
     // Options added after the file was created are appended with their
     // explanation, so an existing settings file shows every option.
     struct Later { const wchar_t* key; const char* text; };
@@ -82,6 +93,13 @@ void SettingsLoad() {
         {L"hintneighbours",
          "; Add the four surrounding gems to a hint (Q reads them anyway): on, off\r\n"
          "hintneighbours=off\r\n"},
+        {L"enterselects",
+         "; Enter selects the gem under the cursor, like Space: on, off.\r\n"
+         "; (Tab, then Enter still presses the board's buttons.)\r\n"
+         "enterselects=on\r\n"},
+        {L"settingsversion",
+         "; Format of this file, used to update it for new versions; do not change.\r\n"
+         "settingsversion=2\r\n"},
     };
     for (const Later& opt : later) {
         if (Get(opt.key, L"?") != L"?") continue;
@@ -107,15 +125,17 @@ void SettingsLoad() {
     g_settings.stillMovingWarning = On(L"stillmoving", true);
     g_settings.announceSelection = On(L"selection", true);
     g_settings.readRowColumnKeys = On(L"rowcolumnkeys", false);
-    g_settings.nextSpecialKey = On(L"nextspecialkey", false);
+    g_settings.nextSpecialKey = On(L"nextspecialkey", true);
+    g_settings.enterSelects = On(L"enterselects", true);
     g_settings.soundCues = On(L"soundcues", true);
     g_settings.autoHints = On(L"autohints", false);
     g_settings.hintNeighbours = On(L"hintneighbours", false);
     Log("settings: cursor=%d coords=%d aftermove=%d stillmoving=%d selection=%d rowcol=%d "
-        "nextspecial=%d sounds=%d",
+        "nextspecial=%d enterselects=%d sounds=%d",
         (int)g_settings.cursor, (int)g_settings.coords, (int)g_settings.afterMove,
         g_settings.stillMovingWarning, g_settings.announceSelection,
-        g_settings.readRowColumnKeys, g_settings.nextSpecialKey, g_settings.soundCues);
+        g_settings.readRowColumnKeys, g_settings.nextSpecialKey, g_settings.enterSelects,
+        g_settings.soundCues);
 }
 
 const Settings& CurrentSettings() { return g_settings; }
