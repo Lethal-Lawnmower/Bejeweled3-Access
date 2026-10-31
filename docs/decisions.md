@@ -214,3 +214,6 @@ changed by the user.
   files (`src/mod/mode_*.cpp/.h`, `docs/modes/*.md`); only the lead agent
   builds the DLL, wires shared files and runs the game. Mode support that
   could not be played (locked modes) is marked "not live-tested".
+- **User (2026-10-30):** Replaced the README intro's timed-modes sentence
+  with the user's dictated text: timed modes, mini games and side modes are
+  not the user's interest; preliminary support exists; issues via Discord.
