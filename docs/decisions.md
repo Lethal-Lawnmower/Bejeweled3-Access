@@ -239,3 +239,6 @@ changed by the user.
 - **User (2026-10-31):** "push the update to GitHub." Approved pushing the
   move-counter commits to main. No new release was asked for; 0.2 stays
   the latest release.
+- **User (2026-10-31):** "Yeah, that's fine. Go ahead." in answer to
+  packaging and publishing 0.2.1: approved GitHub release v0.2.1 with the N
+  key.

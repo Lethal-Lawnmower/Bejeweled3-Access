@@ -207,7 +207,7 @@ before then. Resumed by the user 2026-10-31 for one item: a move counter
 on the other modes (Ice Storm never run), the Lightning end-of-game screen
 and the late quest-help OK button, more PCs and screen readers.
 
-**N key: move counter (2026-10-31, after 0.2, not released).** The user asked
+**N key: move counter (2026-10-31, released in 0.2.1).** The user asked
 for a move counter after a long Classic session, in the form "23 out of 32
 moves made". N speaks the game's own count of successful moves, Board
 `+0xE34` (incremented by `0x0074C070` for each successful swap,
@@ -227,6 +227,14 @@ restored identical): "0 of 20 moves made, 20 left"; an illegal swap left it
 unchanged; then "1 of 20 moves made, 19 left" and "2 of 20 moves made, 18
 left", so `+0xE34` and Moves Left agree there. Not run: Buried Treasures,
 and whether Classic keeps or resets the count across levels.
+
+0.2.1 published 2026-10-31 as GitHub release v0.2.1 (user-approved), adding
+the N key: https://github.com/Lethal-Lawnmower/Bejeweled3-Access/releases/tag/v0.2.1
+Zip SHA-256 ce33f1e4d2f5e606eb3cabe1b24e5e277569164bc53c1c80ee0f5bb0d6f4094a. Release-package check:
+same 18 files as 0.2, no local paths in winmm.dll, the packaged DLL loaded
+in the game ("Bejeweled 3 access 0.2.1 loaded") and N said "0 moves made" in
+a new Classic game (save backed up to private/save-backup-20261031-release
+and restored identical).
 
 0.2 published 2026-10-30 as GitHub release v0.2 (user-approved):
 https://github.com/Lethal-Lawnmower/Bejeweled3-Access/releases/tag/v0.2

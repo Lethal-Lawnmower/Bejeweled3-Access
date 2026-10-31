@@ -22,7 +22,7 @@ A screen-reader accessibility mod for the Steam release of Bejeweled 3
 mouse-only menus, and describes the board while you play with the game's own
 keyboard controls.
 
-Status: version 0.2 (in development). Menus and dialogs are complete; the
+Status: version 0.2.1 (in development). Menus and dialogs are complete; the
 board works in Classic and Zen. Poker, Butterflies, Ice Storm, Diamond Mine,
 Lightning and the quests now have mode support (M key, F6, events), but it
 has **not been through live testing** by players; only short checks by
@@ -66,7 +66,7 @@ On the game board (stage 1, 2026-10-30):
 | H | Press the game's hint button; the mod says which gem the hint points to (also for automatic hints) |
 | X | Next special gem; again for the one after (on by default from 0.2) |
 | T | Time left in timed modes, as the game's timer shows it (0.2) |
-| N | Moves made this game, the game's own count; on move-limit quests also the limit and moves remaining, e.g. "23 of 32 moves made, 9 left" (after 0.2) |
+| N | Moves made this game, the game's own count; on move-limit quests also the limit and moves remaining, e.g. "23 of 32 moves made, 9 left" (0.2.1) |
 | M | Mode details: poker hand, butterflies, ice columns, ... (0.2, not live-tested) |
 | F6 | Score, level, progress, moves, plus the mode's status |
 | F1 | List the keys (0.2) |
