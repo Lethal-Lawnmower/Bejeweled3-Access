@@ -217,3 +217,5 @@ changed by the user.
 - **User (2026-10-30):** Replaced the README intro's timed-modes sentence
   with the user's dictated text: timed modes, mini games and side modes are
   not the user's interest; preliminary support exists; issues via Discord.
+- **User (2026-10-30):** Public contact in the readmes: Discord handle
+  lethal_lawnmower (user-provided for publication).

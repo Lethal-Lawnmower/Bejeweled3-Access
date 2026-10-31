@@ -11,8 +11,8 @@ only works with the Steam version on its latest version.**
 
 Timed modes, mini games and side modes aren't things I necessarily have an
 interest in, but I did add preliminary support for them for now. If you
-have any issues, reach out to me on Discord, and I'll see if I can fix them,
-or if I do have the urge to get around to them.
+have any issues, reach out to me on Discord (`lethal_lawnmower`), and I'll see if I can
+fix them, or if I do have the urge to get around to them.
 
 ---
 
