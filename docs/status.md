@@ -200,6 +200,12 @@ game-wide rather than per profile.
 
 ## Next steps
 
+**Paused by the user 2026-10-30** after the 0.2 release, waiting for player
+feedback. Resume when the user brings feedback; do not start new work
+before then. Path to 1.0 (agent view, not a user decision): player reports
+on the other modes (Ice Storm never run), the Lightning end-of-game screen
+and the late quest-help OK button, more PCs and screen readers.
+
 0.2 published 2026-10-30 as GitHub release v0.2 (user-approved):
 https://github.com/Lethal-Lawnmower/Bejeweled3-Access/releases/tag/v0.2
 Zip SHA-256 a0dc688e3c53276017799edefa69f694011bf57175ef8e0038e40d8626c6b8d0.

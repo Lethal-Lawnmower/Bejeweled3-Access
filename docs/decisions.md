@@ -221,3 +221,5 @@ changed by the user.
   lethal_lawnmower (user-provided for publication).
 - **User (2026-10-30):** Approved pushing 0.2 and publishing GitHub release
   v0.2 ("Yeah, you want to do it?" in answer to push and release).
+- **User (2026-10-30):** Project paused after 0.2 until player feedback
+  arrives; the user moves on to another project.
