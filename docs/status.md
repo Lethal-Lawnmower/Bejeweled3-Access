@@ -219,12 +219,19 @@ game-wide rather than per profile.
    gameplay is worked out. Space pauses timed boards only while the
    keyboard cursor has never been shown (static research, board-input.md);
    the select case above is confirmed, the pause case is not tested.
-2. Agent proposals, not yet approved: Enter acts like Space on the board;
-   F1 reads the key list; X (next special gem) and R/C on by default; an
-   easier way to open the settings file; clearer README on the two ways to
-   swap.
-3. Listing in the Accessibility Mod Manager: the author tool
+2. Done for 0.2 (user-approved 2026-10-30, runtime-verified by posted keys
+   on the user's profile, save restored): Enter selects like Space (Enter
+   after Tab still presses a board button); F1 key list in menus and on the
+   board; X on by default and repeated X goes on to the next special gem;
+   0.1 settings files are updated once (`settingsversion=2`).
+3. In progress: mode support (Poker, Butterflies, Ice Storm, Diamond Mine,
+   Lightning objects, quests) by three subagents in `src/mod/mode_*.cpp`
+   and `docs/modes/`, through `src/mod/mode_info.h` (cell text, F6 status,
+   M key details, events). The lead has wired the hooks; the full build
+   waits for the mode files. Not live-tested: Poker, Butterflies and
+   Ice Storm are locked on the user's profile.
+4. Listing in the Accessibility Mod Manager: the author tool
    (amm-author 0.30.0) is downloaded locally, outside the repository; its
    publishing docs are not read yet.
-4. Exercise the untested screens and modes (Butterflies, Poker, move-based
+5. Exercise the untested screens and modes (Butterflies, Poker, move-based
    quests).
