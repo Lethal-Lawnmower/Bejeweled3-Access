@@ -8,6 +8,7 @@
 #include "game_actions.h"
 #include "game_memory.h"
 #include "game_strings.h"
+#include "hud.h"
 #include "log.h"
 #include "settings.h"
 #include "speech.h"
@@ -544,6 +545,17 @@ bool BoardKeyDown(uintptr_t board, WPARAM key) {
             }
             Speak(NeighboursText(board, s, col, row), true);
             return true;
+        case 'T': {  // time left, as the game's timer shows it
+            HudState hud;
+            bool read = ReadHud(&hud) && hud.timeLimitSeconds.known;
+            if (read && hud.timeLimitSeconds.value == 0)
+                Speak(L"no time limit", true);
+            else if (!read || !hud.ticksLeft.known)
+                Speak(L"time not available", true);
+            else
+                Speak(HudTimeText(hud.ticksLeft.value) + L" left", true);
+            return true;
+        }
         case 'R':
         case 'C': {
             if (!set.readRowColumnKeys) return false;

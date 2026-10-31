@@ -58,6 +58,7 @@ On the game board (stage 1, 2026-10-30):
 | Q | Neighbours: the gems above, below, left and right |
 | H | Press the game's hint button; the mod says which gem the hint points to (also for automatic hints) |
 | F6 | Score, level, progress, moves |
+| T | Time left in timed modes, as the game's timer shows it (in development for 0.2, not in the 0.1 release) |
 | R / C | Read the row / column (off by default, see settings) |
 | X | Next special gem (off by default) |
 

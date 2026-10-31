@@ -339,6 +339,12 @@ std::wstring gLastFrontText;
 
 }  // namespace
 
+std::wstring HudTimeText(int ticksLeft) {
+    int seconds = (ticksLeft + 99) / 100;  // DrawTimer 0x007516A0
+    return std::to_wstring(seconds / 60) + (seconds % 60 < 10 ? L":0" : L":") +
+           std::to_wstring(seconds % 60);
+}
+
 const char* HudModeName(HudMode mode) {
     switch (mode) {
     case HudMode::Classic: return "Classic";

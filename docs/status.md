@@ -203,14 +203,18 @@ game-wide rather than per profile.
 0.1 is released (GitHub release v0.1) and in use. Candidates for 0.2:
 
 1. **T key** (user request, 2026-10-30): T speaks the countdown in timed
-   modes such as Lightning (time left only, quicker than F6). The mod
-   already reads it: F6 includes it via `TicksLeft` in `src/mod/hud.cpp`
-   (Board vtable+0x2EC, as the game's DrawTimer), runtime-verified as
-   "0:56" in Lightning (session 3). On untimed boards T would say so.
-   Timed modes themselves stay unsupported until their gameplay is
-   worked out; static research (hud.md) says Space pauses timed boards,
-   not checked at runtime, which would conflict
-   with Space-to-select there.
+   modes such as Lightning, "1:05 left"; "no time limit" on untimed
+   boards; "time not available" if the read fails. **Implemented and
+   built 2026-10-30, not yet runtime-tested** (the game was running, so
+   the new DLL was not installed). It uses `TicksLeft` in
+   `src/mod/hud.cpp` (Board vtable+0x2EC, as the game's DrawTimer) and the
+   new `HudTimeText`, which rounds up to whole seconds like DrawTimer.
+   F6 now uses the same helper; before, it truncated and could say one
+   second less than the screen. The game's board does not handle T
+   (`docs/re/board-input.md`). Timed modes stay unsupported until their
+   gameplay is worked out. Space pauses timed boards only while the
+   keyboard cursor has never been shown (static research, board-input.md),
+   so it should not clash with Space-to-select once an arrow was pressed.
 2. Agent proposals, not yet approved: Enter acts like Space on the board;
    F1 reads the key list; X (next special gem) and R/C on by default; an
    easier way to open the settings file; clearer README on the two ways to

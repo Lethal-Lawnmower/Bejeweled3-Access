@@ -72,6 +72,10 @@ uintptr_t HudCurrentBoard();
 // board exists. Individual fields may still be unknown on success.
 bool ReadHud(HudState* out);
 
+// The time left as the game's timer draws it ("1:05"): DrawTimer rounds
+// 1/100 s ticks up to whole seconds, so "0:01" lasts until time runs out.
+std::wstring HudTimeText(int ticksLeft);
+
 // Polls the current board's announcement queue and returns the texts of
 // announcements that became visible since the previous call, already cleaned
 // for speech (line breaks -> spaces, colour codes removed). Call once per

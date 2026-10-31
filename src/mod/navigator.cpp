@@ -1331,9 +1331,7 @@ void SpeakHud() {
     if (s.multiplier.known && s.multiplier.value > 1)
         out += L", multiplier " + std::to_wstring(s.multiplier.value);
     if (s.ticksLeft.known && s.timeLimitSeconds.known && s.timeLimitSeconds.value > 0) {
-        int seconds = s.ticksLeft.value / 100;
-        out += L", time " + std::to_wstring(seconds / 60) + L":" +
-               (seconds % 60 < 10 ? L"0" : L"") + std::to_wstring(seconds % 60);
+        out += L", time " + HudTimeText(s.ticksLeft.value);
     }
     add(L"moves left", s.movesLeft);
     if (s.questDescriptionKnown && !s.questDescription.empty())
