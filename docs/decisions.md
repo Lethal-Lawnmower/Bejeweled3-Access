@@ -219,3 +219,5 @@ changed by the user.
   not the user's interest; preliminary support exists; issues via Discord.
 - **User (2026-10-30):** Public contact in the readmes: Discord handle
   lethal_lawnmower (user-provided for publication).
+- **User (2026-10-30):** Approved pushing 0.2 and publishing GitHub release
+  v0.2 ("Yeah, you want to do it?" in answer to push and release).
