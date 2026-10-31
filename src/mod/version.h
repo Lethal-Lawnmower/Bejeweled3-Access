@@ -3,7 +3,7 @@
 #include <string>
 
 // Mod version, spoken at startup and written to the log.
-constexpr const wchar_t* kModVersion = L"0.1";
+constexpr const wchar_t* kModVersion = L"0.2";
 
 // True if the running game is the one build this mod was made for: the
 // vanilla Steam Bejeweled3.exe (user decision for 0.1: no other versions,

@@ -46,6 +46,7 @@ constexpr int kPieceCounter = 0x244;      // seconds / bomb count (static)
 constexpr int kColourNameBase = 455;      // string id 455 + colour (static)
 
 constexpr uint32_t kFlagTime = 0x20000, kFlagMoveBomb = 0x20, kFlagTimeBomb = 0x40;
+constexpr uint32_t kFlagDigTile = 0x10000;  // Diamond Mine ground tile (board-objects.md)
 
 // The game's hint starts a block of animation curves on the hinted gem
 // (FUN_00748480; runtime 2026-10-30: only that gem's 0x284..0x49C changed on
@@ -268,15 +269,23 @@ std::wstring Position(int col, int row) {
     return L"column " + std::to_wstring(col + 1) + L", row " + std::to_wstring(row + 1);
 }
 
+std::wstring CellExtra(uintptr_t board, int col, int row);
+
 std::wstring Gem(uintptr_t board, const Snapshot& s, int col, int row, bool withSelection = true) {
     const Cell& c = s.cells[col + 8 * row];
     if (!c.present) return L"empty";
+    // Diamond Mine tiles share one flag, so the cached special title would be
+    // the first tile's; the mode hook names each tile (DIRT, GOLD, ...).
+    if ((c.flags & kFlagDigTile) && g_hooks && g_hooks->cellText) return L"tile";
     std::wstring colour = ColourName(c.colour);
     std::wstring special = SpecialName(board, col + 8 * row, c.flags);
     std::wstring out = colour;
     if (!special.empty()) out += (out.empty() ? L"" : L" ") + special;
     else if (c.flags) out += L" special";
-    if (c.flags & (kFlagTime | kFlagMoveBomb | kFlagTimeBomb)) out += L" " + std::to_wstring(c.counter);
+    // The bare counter only where no mode hook words it ("5 moves left").
+    bool modeWords = g_hooks && g_hooks->cellText;
+    if (!modeWords && (c.flags & (kFlagTime | kFlagMoveBomb | kFlagTimeBomb)))
+        out += L" " + std::to_wstring(c.counter);
     if (withSelection && c.selected) out += L", selected";
     return out.empty() ? L"gem" : out;
 }
@@ -288,7 +297,9 @@ std::wstring NeighboursText(uintptr_t board, const Snapshot& s, int col, int row
         {0, -1, L"up"}, {0, 1, L"down"}, {-1, 0, L"left"}, {1, 0, L"right"}};
     for (const auto& d : dirs) {
         int c2 = col + d.dc, r2 = row + d.dr;
-        std::wstring what = (c2 < 0 || c2 > 7 || r2 < 0 || r2 > 7) ? L"edge" : Gem(board, s, c2, r2);
+        std::wstring what = (c2 < 0 || c2 > 7 || r2 < 0 || r2 > 7)
+                                ? L"edge"
+                                : Gem(board, s, c2, r2) + CellExtra(board, c2, r2);
         out += (out.empty() ? L"" : L". ") + std::wstring(d.name) + L" " + what;
     }
     return out;
@@ -390,17 +401,12 @@ void BoardReset() {
 }
 
 void BoardTick(uintptr_t board) {
-    if (board != g_board) {
+    if (!board) return;  // no board object yet (screen still switching)
+    if (board != g_board || !g_hooks) {
         BoardReset();
         g_board = board;
         g_hooks = &ModeHooksFor(board);
         if (g_hooks->reset) g_hooks->reset();
-    }
-    // Mode events (card added, butterfly at the top, ...) queue after other speech.
-    if (g_hooks->tick) {
-        std::vector<std::wstring> events;
-        g_hooks->tick(board, &events);
-        for (const std::wstring& e : events) Speak(e, false);
     }
     Snapshot now;
     if (!TakeSnapshot(board, &now)) return;
@@ -425,6 +431,13 @@ void BoardTick(uintptr_t board) {
         } else if (--g_swap.ticksLeft <= 0) {
             g_swap.active = false;  // the game did not take the swap
         }
+    }
+    // Mode events (card added, butterfly at the top, ...) queue after the
+    // swap message above, which interrupts.
+    if (g_hooks->tick) {
+        std::vector<std::wstring> events;
+        g_hooks->tick(board, &events);
+        for (const std::wstring& e : events) Speak(e, false);
     }
     bool quiet = g_swap.active || g_quietTicks > 0;
     if (g_quietTicks > 0) --g_quietTicks;
@@ -633,7 +646,8 @@ bool BoardKeyDown(uintptr_t board, WPARAM key) {
                 if (s.cells[i].present && s.cells[i].flags) {
                     g_lastSpecial = i;
                     g_lastSpecialFrom = from;
-                    Speak(Gem(board, s, i % 8, i / 8) + L", " + Position(i % 8, i / 8), true);
+                    Speak(Gem(board, s, i % 8, i / 8) + CellExtra(board, i % 8, i / 8) + L", " +
+                              Position(i % 8, i / 8), true);
                     return true;
                 }
             }

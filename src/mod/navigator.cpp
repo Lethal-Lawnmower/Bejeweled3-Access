@@ -1373,8 +1373,10 @@ void PollRareChanges() {
 
 void NavigatorTick(HWND hwnd) {
     PollRareChanges();
-    if (g_onBoard) BoardTick(g_context);
-    else BoardReset();
+    // g_onBoard is set as soon as a board shows; g_context follows once the
+    // screen has settled, so tick the board only when both agree.
+    if (g_onBoard && g_context && IsKindOf(g_context, "Board")) BoardTick(g_context);
+    else if (!g_onBoard) BoardReset();
     static bool loggedStrings = false;
     if (!loggedStrings && FindWidgetManager()) {
         loggedStrings = true;
@@ -1423,7 +1425,7 @@ bool NavigatorKeyDown(HWND hwnd, WPARAM key) {
             return true;
     }
     // The mod's board reading keys (E, Q, ...); the game's own keys pass on.
-    if (g_onBoard && BoardKeyDown(g_context, key)) {
+    if (g_onBoard && g_context && IsKindOf(g_context, "Board") && BoardKeyDown(g_context, key)) {
         g_swallowChar = (key >= 'A' && key <= 'Z') ? (WPARAM)(key - 'A' + 'a') : 0;
         return true;
     }

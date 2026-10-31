@@ -1,5 +1,10 @@
 # In-game HUD, announcements and board buttons
 
+> **2026-10-30:** the mode docs in `docs/modes/` correct and extend this
+> page (Ice Storm column records start at `+0x3D28`; Diamond Mine depth as
+> drawn; Butterfly escape; Lightning bonus and Last Hurrah fields; quest
+> goal grids). Prefer them where they differ.
+
 Scope: the UI around the gem grid (score, level/progress, multiplier,
 timer, mode counters, pause/game-over/level-complete state, hint, the
 board's own buttons, Announcement texts). Gem-grid navigation is covered

@@ -6,6 +6,7 @@
 - [research.md](research.md) - binary facts and community projects
 - [board-research-summary.md](board-research-summary.md) - board research results and design options
 - [board-design.md](board-design.md) - chosen board defaults (all configurable)
+- [modes/](modes/) - other game modes (Poker, Butterflies, Ice Storm, Diamond Mine, Lightning, quests): what is spoken and the memory behind it; **not live-tested** (0.2): [poker](modes/poker.md), [butterflies](modes/butterflies.md), [ice storm](modes/ice-storm.md), [diamond mine](modes/diamond-mine.md), [lightning](modes/lightning.md), [quests](modes/quests.md)
 - [board-inspiration.md](board-inspiration.md) - design ideas from other accessible match-3 work
 - [reverse-engineering.md](reverse-engineering.md) - core memory layouts with evidence
 - [re/text-drawing.md](re/text-drawing.md) - drawn-text capture hooks

@@ -6,7 +6,7 @@ rem   - licences, Prism notices, the player readme
 rem Requires the same tools as tools\build.bat and deps\prism-src (v0.18.3).
 setlocal
 for %%I in ("%~dp0..") do set ROOT=%%~fI
-set VERSION=0.1
+set VERSION=0.2
 call "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars32.bat" >nul || exit /b 1
 set PATH=%ROOT%\deps\buildenv\Scripts;%PATH%
 

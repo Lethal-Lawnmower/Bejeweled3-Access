@@ -20,10 +20,13 @@ A screen-reader accessibility mod for the Steam release of Bejeweled 3
 mouse-only menus, and describes the board while you play with the game's own
 keyboard controls.
 
-Status: version 0.1. Menus and dialogs are complete; the board works in
-Classic and Zen (Butterflies, Poker and move-based quests untested;
-Lightning, Ice Storm, Diamond Mine and timed quests not supported yet). See
-[docs/status.md](docs/status.md).
+Status: version 0.2 (in development). Menus and dialogs are complete; the
+board works in Classic and Zen. Poker, Butterflies, Ice Storm, Diamond Mine,
+Lightning and the quests now have mode support (M key, F6, events), but it
+has **not been through live testing** by players; only short checks by
+posted keys (Poker, Lightning, the Butterflies, Gold Rush and Time Bomb
+quests), and Ice Storm not at all. See [docs/status.md](docs/status.md) and
+[docs/modes/](docs/modes/).
 
 ## How it works
 
@@ -70,8 +73,8 @@ After each move the mod plays the game's own soft button sound when the
 board has settled and says a short summary (points, gems cleared, cascades,
 special gems made or set off). All of this is configurable in
 `%LOCALAPPDATA%\Bejeweled3Access\settings.ini` (created on first start, with
-explanations). Not supported for now: Lightning, Ice Storm, Diamond Mine and
-the timed quests.
+explanations). The other modes' extras are described in
+[docs/modes/](docs/modes/); they have not been through live testing.
 
 During a game the game's own keys work as normal (arrows move the gem
 reticle, W/A/S/D swap, Space selects a gem (it pauses timed modes only

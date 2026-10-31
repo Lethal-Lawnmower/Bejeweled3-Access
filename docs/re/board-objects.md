@@ -1,5 +1,10 @@
 # Board objects: special gems and mode/quest objects
 
+> **2026-10-30:** the mode docs in `docs/modes/` correct and extend this
+> page (Ice Storm column records start at `+0x3D28`; Diamond Mine depth as
+> drawn; Butterfly escape; Lightning bonus and Last Hurrah fields; quest
+> goal grids). Prefer them where they differ.
+
 Scope: every kind of thing that can sit on the board in each mode, how it is
 represented in memory, what it does and how a mod could read it. Agent 4 of
 the board research (see `board-research-brief.md`). Grid model, settling,

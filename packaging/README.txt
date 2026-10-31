@@ -1,4 +1,4 @@
-Bejeweled 3 Access, version 0.1
+Bejeweled 3 Access, version 0.2
 ================================
 
 This is Bejeweled 3 Access. This is more a tech experiment for me, since
@@ -33,7 +33,7 @@ Install
    C:\Program Files (x86)\Steam\steamapps\common\Bejeweled 3
 3. Copy winmm.dll and prism.dll into that folder (next to Bejeweled3.exe).
 4. Start the game from Steam. You should hear
-   "Bejeweled 3 access 0.1 loaded".
+   "Bejeweled 3 access 0.2 loaded".
    If you hear that your version is not supported, the mod stays off: it
    only works with the current Steam version of the game.
 
@@ -100,13 +100,14 @@ A log of what the mod said is written to
 %LOCALAPPDATA%\Bejeweled3Access\mod.log (useful when reporting problems).
 
 
-Known limitations in 0.1
+Known limitations in 0.2
 ------------------------
 
 - Steam version only; any other version is refused.
-- Not supported for now: Lightning, Ice Storm, Diamond Mine and the timed
-  quests.
-- Butterflies, Poker and the move-based quests are untested.
+- Poker, Butterflies, Ice Storm, Diamond Mine, Lightning and the quests
+  have new support (M key, F6, spoken events) that has NOT been through
+  live testing by players. Ice Storm has not been run at all. Please
+  report what is wrong or missing.
 - Settings can only be changed in the settings file.
 - Tested with NVDA on one PC so far.
 

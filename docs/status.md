@@ -224,12 +224,26 @@ game-wide rather than per profile.
    after Tab still presses a board button); F1 key list in menus and on the
    board; X on by default and repeated X goes on to the next special gem;
    0.1 settings files are updated once (`settingsversion=2`).
-3. In progress: mode support (Poker, Butterflies, Ice Storm, Diamond Mine,
-   Lightning objects, quests) by three subagents in `src/mod/mode_*.cpp`
-   and `docs/modes/`, through `src/mod/mode_info.h` (cell text, F6 status,
-   M key details, events). The lead has wired the hooks; the full build
-   waits for the mode files. Not live-tested: Poker, Butterflies and
-   Ice Storm are locked on the user's profile.
+3. Mode support (2026-10-30), written by three subagents (static research,
+   `src/mod/mode_*.cpp`, `docs/modes/*.md`) and integrated by the lead
+   through `src/mod/mode_info.h`: cell text after the gem name, F6 status,
+   the new **M** key (mode details) and spoken events. Short live checks by
+   posted keys on the user's profile (save restored): Poker (cards, hands,
+   scored hand), Lightning (time gem "+10 sec", bonus round, Last Hurrah),
+   Butterflies quest (butterfly position, spider), Gold Rush quest
+   (Diamond Mine tiles, **matched a screenshot**), Time Bomb quest (bomb
+   counter 20 -> 17). Not run: Ice Storm (locked), endless Butterflies and
+   Diamond Mine (locked), Balance, Avalanche, Alchemy, Buried Treasure,
+   Stratamax. Nothing heard by a player yet. Details and open questions
+   per mode in `docs/modes/`.
+   - Fixed during the check: a crash on entering Poker. The navigator set
+     `g_onBoard` before `g_context` caught up, so BoardTick ran on a
+     non-board or null pointer; the new hook table was then null. Boards
+     are now ticked only when `g_context` is itself a Board.
+   - Mode events are spoken after the swap message (were cut off).
+   - Known, older: the Lightning end-of-game dialog is read as one long
+     run of drawn text; a quest help dialog's OK button appears a moment
+     after the dialog (Enter pressed too early does nothing).
 4. Listing in the Accessibility Mod Manager: the author tool
    (amm-author 0.30.0) is downloaded locally, outside the repository; its
    publishing docs are not read yet.
