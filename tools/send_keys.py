@@ -10,7 +10,8 @@ import sys
 import time
 
 VK = {"tab": 0x09, "return": 0x0D, "space": 0x20, "up": 0x26, "down": 0x28,
-      "home": 0x24, "end": 0x23, "left": 0x25, "right": 0x27, "f5": 0x74, "f6": 0x75, "f12": 0x7B, "back": 0x08}
+      "home": 0x24, "end": 0x23, "left": 0x25, "right": 0x27, "f5": 0x74, "f6": 0x75, "f12": 0x7B, "back": 0x08,
+      "escape": 0x1B}
 
 u = ctypes.windll.user32
 hwnd = u.FindWindowW("MainWindow", None)
