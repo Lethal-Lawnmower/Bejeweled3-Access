@@ -236,3 +236,6 @@ changed by the user.
 - **User (2026-10-31):** "we need it to also, if it's possible, display how
   many moves remaining... however you want to display it." N adds "9 left"
   on move-limit quests; other modes have no limit on screen.
+- **User (2026-10-31):** "push the update to GitHub." Approved pushing the
+  move-counter commits to main. No new release was asked for; 0.2 stays
+  the latest release.
