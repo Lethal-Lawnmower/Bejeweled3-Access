@@ -200,8 +200,17 @@ game-wide rather than per profile.
 
 ## Next steps
 
-1. User test of menus with a real keyboard and NVDA.
-2. Board phase: speak the reticle position and gem under it (board layout in
-   `docs/re/hud.md` and `reverse-engineering.md`), hints (ShowHint hook).
-3. Exercise the untested screens above and fix what they reveal.
-4. Decide licence and set up a private GitHub repository.
+0.1 is released (GitHub release v0.1) and in use. Candidates for 0.2:
+
+1. **T key** (user request, 2026-10-30): a time key on the letter T. What
+   it reads (play time from the game, a timed mode's clock, or the PC's
+   clock) is still to be confirmed with the user.
+2. Agent proposals, not yet approved: Enter acts like Space on the board;
+   F1 reads the key list; X (next special gem) and R/C on by default; an
+   easier way to open the settings file; clearer README on the two ways to
+   swap.
+3. Listing in the Accessibility Mod Manager: the author tool
+   (amm-author 0.30.0) is downloaded locally, outside the repository; its
+   publishing docs are not read yet.
+4. Exercise the untested screens and modes (Butterflies, Poker, move-based
+   quests).
