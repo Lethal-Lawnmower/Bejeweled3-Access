@@ -622,10 +622,17 @@ bool BoardKeyDown(uintptr_t board, WPARAM key) {
         }
         case 'N': {  // the game's own count of successful moves this game
             int32_t moves = 0;
-            if (!ReadI32(board + kMovesMade, &moves) || moves < 0)
+            if (!ReadI32(board + kMovesMade, &moves) || moves < 0) {
                 Speak(L"moves not available", true);
-            else
-                Speak(std::to_wstring(moves) + (moves == 1 ? L" move" : L" moves"), true);
+                return true;
+            }
+            // Move-limit quests: the limit is moves made plus the game's
+            // "Moves Left" counter, e.g. "23 of 32 moves made".
+            std::wstring out = std::to_wstring(moves);
+            HudState hud;
+            if (ReadHud(&hud) && hud.movesLeft.known && hud.movesLeft.value >= 0)
+                out += L" of " + std::to_wstring(moves + hud.movesLeft.value);
+            Speak(out + (moves == 1 && out == L"1" ? L" move made" : L" moves made"), true);
             return true;
         }
         case 'R':

@@ -75,7 +75,7 @@ H                               the game's hint: which gem it points to
 X                               next special gem; press again for the
                                 one after
 T                               time left (timed modes)
-N                               moves made this game
+N                               moves made this game (and the limit on move-limit quests)
 M                               mode details (poker hand, butterflies,
                                 ice columns, ...)
 F6                              score, level, progress

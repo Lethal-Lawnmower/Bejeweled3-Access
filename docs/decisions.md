@@ -230,3 +230,6 @@ changed by the user.
   resumption of the paused project for this item only. Added as the N key,
   reading the game's own moves-made field rather than counting in the mod.
   Not pushed or released; publication still needs the user's approval.
+- **User (2026-10-31):** "Okay, you can test and see. Basically, you know, 23
+  out of 32 moves made." Authorized the live test and set the wording: on
+  quests with a move limit N also gives the limit.

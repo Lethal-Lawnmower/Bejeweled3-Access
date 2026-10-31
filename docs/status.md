@@ -208,13 +208,19 @@ on the other modes (Ice Storm never run), the Lightning end-of-game screen
 and the late quest-help OK button, more PCs and screen readers.
 
 **N key: move counter (2026-10-31, after 0.2, not released).** The user asked
-for a move counter after a long Classic session. N speaks the game's own
-count of successful moves, Board `+0xE34` (incremented by `0x0074C070` for
-each successful swap, docs/re/board-events.md). Evidence: static only plus a
-clean build; no board was open when checked, so the value has not been read
-live and it is unknown whether Classic keeps or resets it across levels.
-Next: on a test board, make two or three moves, press N, compare with the
-moves made; then go up a level in Classic and press N again.
+for a move counter after a long Classic session, in the form "23 out of 32
+moves made". N speaks the game's own count of successful moves, Board
+`+0xE34` (incremented by `0x0074C070` for each successful swap,
+docs/re/board-events.md): "0 moves made", "1 move made", "2 moves made". On
+MoveLimitBoard quests it adds the limit as moves made plus the game's Moves
+Left counter (`+0x324C`, read by hud.cpp): "23 of 32 moves made".
+Live check 2026-10-31 (posted keys, Lethal profile, save backed up to
+private/save-backup-20261031-moves and restored identical, test classic.sav
+removed): new Classic game N "0 moves made"; after one match "1 move made";
+two illegal swaps ("no match, swapped back") left it at 1; after a second
+match "2 moves made". Not run: a move-limit quest (the "of 32" form, and
+whether `+0xE34` and Moves Left agree there), and whether Classic keeps or
+resets the count across levels.
 
 0.2 published 2026-10-30 as GitHub release v0.2 (user-approved):
 https://github.com/Lethal-Lawnmower/Bejeweled3-Access/releases/tag/v0.2
