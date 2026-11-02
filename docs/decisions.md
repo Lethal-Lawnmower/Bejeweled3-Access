@@ -255,3 +255,9 @@ changed by the user.
   already held unrelated files, so the catalog was checked out in a new
   folder instead; the README gained an "Install for players" section
   (manager or hand install), committed locally, push not yet approved.
+- **User (2026-11-01):** after a successful install through the manager:
+  "I'd recommend people to install using the manager, honestly." README
+  now names the manager as the recommended install; the user approved
+  pushing the documentation ("Yeah, sure, go ahead"). The player readme
+  inside the zip (packaging/README.txt) still describes the hand install;
+  to be updated with the next release.

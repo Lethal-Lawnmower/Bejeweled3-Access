@@ -92,7 +92,9 @@ works the same in fullscreen or windowed mode and at any art resolution.
 
 ## Install for players
 
-- **Accessibility Mod Manager:** in the manager, open Sources and add
+The recommended way to install is the Accessibility Mod Manager.
+
+- **Accessibility Mod Manager (recommended):** in the manager, open Sources and add
   `lethal-lawnmower` (catalog: [Lethal-Lawnmower/accessibility-mods](https://github.com/Lethal-Lawnmower/accessibility-mods)),
   then install Bejeweled 3 Access. The manager handles updates and
   uninstalling.
