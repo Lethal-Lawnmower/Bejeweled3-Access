@@ -296,7 +296,10 @@ Zip SHA-256 a0dc688e3c53276017799edefa69f694011bf57175ef8e0038e40d8626c6b8d0.
    manager's GitHub release digest; the executable is not code-signed.
    Not verified: installing, updating and uninstalling through the
    manager itself (the manager is not installed here), and whether it
-   copes with the hand-installed DLLs already in the user's game folder.
+   copes with hand-installed DLLs. 2026-11-01: at the user's request the
+   hand-installed winmm.dll and prism.dll were removed from the game folder
+   (`tools/install.sh --remove`, game closed) so the user can test
+   installing through the manager; result not yet reported.
    Procedure: building.md section 6. Catalog checkout outside the
    repository (its location is a local detail, kept out of these docs).
 5. Exercise the untested screens and modes (Butterflies, Poker, move-based
