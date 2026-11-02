@@ -284,22 +284,20 @@ Zip SHA-256 a0dc688e3c53276017799edefa69f694011bf57175ef8e0038e40d8626c6b8d0.
    - Known, older: the Lightning end-of-game dialog is read as one long
      run of drawn text; a quest help dialog's OK button appears a moment
      after the dialog (Enter pressed too early does nothing).
-4. Listing in the Accessibility Mod Manager (AMM). Docs of the author tool
-   amm-author 0.30.0 read 2026-10-31 (zip kept outside the repository; the
-   executable has not been run). How listing works: a public GitHub
-   "catalog" repository holding `index.json` (author profile, games,
-   releases); a manager package (root `manifest.json` plus `files/` laid out
-   as in the game folder, here winmm.dll, prism.dll, readme and licences)
-   built with `package build`; `release publish` uploads that zip to the
-   game repository's tag `v<version>` (would add a second asset to the
-   existing v0.2.1 release), checks its public SHA-256, commits and pushes
-   the catalog, then submits the catalog to the manager's public plugin
-   directory (discovery metadata only). Game data: Steam app 78000,
-   `Bejeweled3.exe`. No loader dependency is needed (the proxy DLL is the
-   mod). AMM licence: plugin authors keep full rights to their content;
-   nothing found that conflicts with GPL-3.0. Needs the user's approval
-   before: running amm-author.exe, creating the public catalog repository
-   (name and plugin ID to choose), uploading the package and the directory
-   submission. Git identity and GitHub sign-in are already set up.
+4. Accessibility Mod Manager: **listed 2026-11-01** (user-approved). Public
+   catalog https://github.com/Lethal-Lawnmower/accessibility-mods (plugin
+   `lethal-lawnmower`, game `bejeweled-3`, release 0.2.1 stable). The
+   package `bejeweled-3-0.2.1.zip` (SHA-256
+   bed0ec62e7ed6d298d08cdc2b21e8389d2f1345da199159108483ec8972dc15e,
+   18 files, copy actions into the game folder, no dependencies or
+   scripts) was added to release v0.2.1; amm-author reported all 11
+   publish phases, including public hash check and directory submission;
+   the raw catalog was read back afterwards. Tool zip SHA-256 matched the
+   manager's GitHub release digest; the executable is not code-signed.
+   Not verified: installing, updating and uninstalling through the
+   manager itself (the manager is not installed here), and whether it
+   copes with the hand-installed DLLs already in the user's game folder.
+   Procedure: building.md section 6. Catalog checkout outside the
+   repository (its location is a local detail, kept out of these docs).
 5. Exercise the untested screens and modes (Butterflies, Poker, move-based
    quests).

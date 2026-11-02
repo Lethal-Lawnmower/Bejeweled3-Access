@@ -242,3 +242,16 @@ changed by the user.
 - **User (2026-10-31):** "Yeah, that's fine. Go ahead." in answer to
   packaging and publishing 0.2.1: approved GitHub release v0.2.1 with the N
   key.
+
+## 2026-11-01, Accessibility Mod Manager
+
+- **User (2026-11-01):** "Yeah, okay... Yes, I want to use it." in answer to
+  the proposal: run the amm-author 0.30.0 CLI, create the public catalog
+  repository Lethal-Lawnmower/accessibility-mods with plugin ID
+  `lethal-lawnmower`, add Bejeweled 3, build a manager package of 0.2.1,
+  upload it to the existing v0.2.1 release of Bejeweled3-Access, publish the
+  catalog and submit it to the manager's plugin directory.
+- **Agent (2026-11-01):** Done as approved. The suggested local folder
+  already held unrelated files, so the catalog was checked out in a new
+  folder instead; the README gained an "Install for players" section
+  (manager or hand install), committed locally, push not yet approved.

@@ -90,6 +90,16 @@ mod speaks what you type. Moving to an item tells the game it is hovered
 quest, badge and Zen section texts are read from the game's data. The mod
 works the same in fullscreen or windowed mode and at any art resolution.
 
+## Install for players
+
+- **Accessibility Mod Manager:** in the manager, open Sources and add
+  `lethal-lawnmower` (catalog: [Lethal-Lawnmower/accessibility-mods](https://github.com/Lethal-Lawnmower/accessibility-mods)),
+  then install Bejeweled 3 Access. The manager handles updates and
+  uninstalling.
+- **By hand:** download `Bejeweled3-Access-<version>.zip` from
+  [Releases](https://github.com/Lethal-Lawnmower/Bejeweled3-Access/releases)
+  and follow the readme inside it.
+
 ## Install (local build)
 
 1. Build: see [docs/building.md](docs/building.md).

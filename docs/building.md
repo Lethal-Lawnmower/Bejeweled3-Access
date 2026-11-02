@@ -73,3 +73,32 @@ trimmed (`/d1trimfile`), so neither DLL contains local folder names, then
 writes `dist/Bejeweled3-Access-<version>/` and the zip: both DLLs, the
 player readme (`packaging/README.txt`), the GPL-3.0 licence and Prism's
 licence, notice and bundled licences. `dist/` is not committed.
+
+## 6. Accessibility Mod Manager release
+
+The mod is listed in the Accessibility Mod Manager through the public
+catalog repository Lethal-Lawnmower/accessibility-mods (plugin ID
+`lethal-lawnmower`, game ID `bejeweled-3`), maintained with the
+manager's author CLI (`amm-author`, 0.30.0 from the manager's GitHub
+release v2.0.10; not part of this repository). The catalog checkout and
+the package staging folder live outside this repository.
+
+For a new version, after `tools/package.bat` and the GitHub release:
+
+1. Make a source folder laid out as in the game folder: `winmm.dll`,
+   `prism.dll`, `Bejeweled3-Access-README.txt` (the player readme) and
+   `Bejeweled3-Access-licences/` (the zip's `licences` folder). The longer
+   names keep the game folder free of a generic README.
+2. In the catalog checkout:
+
+```bash
+amm-author package build --source <staging folder> --game bejeweled-3 --version <version> --output <new zip path> --project .
+amm-author package validate --zip <zip> --plugin lethal-lawnmower --game bejeweled-3 --version <version>
+amm-author release publish --game bejeweled-3 --version <version> --channel stable --zip <zip> --notes "<notes>" --project . --dry-run
+amm-author release publish --game bejeweled-3 --version <version> --channel stable --zip <zip> --notes "<notes>" --project . --yes
+```
+
+`release publish` adds `bejeweled-3-<version>.zip` to this repository's
+release `v<version>` (beside the hand-install zip), verifies the public
+hash, pushes the catalog and submits it to the manager's directory.
+Publishing needs the user's approval each time.
