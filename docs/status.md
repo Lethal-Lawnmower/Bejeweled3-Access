@@ -294,12 +294,16 @@ Zip SHA-256 a0dc688e3c53276017799edefa69f694011bf57175ef8e0038e40d8626c6b8d0.
    publish phases, including public hash check and directory submission;
    the raw catalog was read back afterwards. Tool zip SHA-256 matched the
    manager's GitHub release digest; the executable is not code-signed.
-   Not verified: installing, updating and uninstalling through the
-   manager itself (the manager is not installed here), and whether it
-   copes with hand-installed DLLs. 2026-11-01: at the user's request the
+   Install through the manager: verified (below); updating and
+   uninstalling through it: not yet. 2026-11-01: at the user's request the
    hand-installed winmm.dll and prism.dll were removed from the game folder
    (`tools/install.sh --remove`, game closed) so the user can test
-   installing through the manager; result not yet reported.
+   installing through the manager. **User report 2026-11-01: "It worked.
+   We are golden."** The game folder then held the four packaged items
+   (winmm.dll identical to the 0.2.1 release DLL, prism.dll, the readme and
+   licence folder) and the mod log showed "Bejeweled 3 Access 0.2.1
+   starting", "game build verified", "loaded". Updating and uninstalling
+   through the manager are still untested.
    Procedure: building.md section 6. Catalog checkout outside the
    repository (its location is a local detail, kept out of these docs).
 5. Exercise the untested screens and modes (Butterflies, Poker, move-based
